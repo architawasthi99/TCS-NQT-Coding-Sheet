@@ -1,0 +1,36 @@
+SOURCE- LeetCode
+soln:-
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int maxsubarray(vector<int>&arr,int k){
+    int n=arr.size();
+    int left=0;
+    int right=k-1;
+    int sum=0;
+    for(int i=0;i<=right;i++){
+        sum+=arr[i];
+    }
+    int maxsum=sum;
+    while(right<n-1){
+        sum-=arr[left];
+        left++;
+        right++;
+        sum+=arr[right];
+        maxsum=max(maxsum,sum);
+    }
+    return maxsum;
+}
+
+int main(){
+  int n,k;
+  cin>>n>>k;
+  vector<int>arr(n);
+  
+  for(int i=0;i<n;i++){
+      cin>>arr[i];
+  }
+  cout<<"max sum = "<<maxsubarray(arr,k);
+  return 0;
+}
